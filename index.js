@@ -3,14 +3,12 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { Stitch, CustomCredential } from 'mongodb-stitch-browser-sdk';
 import jwt from 'jsonwebtoken';
-import stream from 'getstream';
 
-import Cart from './Cart/Cart';
-import Home from './Home';
-import Notifications from './Notifications/Notifications';
-import ProductItemDetail from './ProductDetail/ProductItemDetail';
+import Cart from './src/Cart/Cart';
+import Home from './src/Home';
+import ProductItemDetail from './src/ProductDetail/ProductItemDetail';
 
-import { stitchAppId, stitchClusterNames, jwtUser } from './config';
+import { stitchAppId, stitchClusterNames, jwtUser } from './src/config';
 
 export default class Routing extends Component {
   constructor(props) {
@@ -29,7 +27,6 @@ export default class Routing extends Component {
       clientAuthenticated: client.auth.loginWithCredential(
         new CustomCredential(jwtString)
       ),
-      streamClient: stream.connect('a2h6fsbzmqu2', null, '52613'),
       homeUrl: '/'
     };
 
@@ -90,7 +87,6 @@ export default class Routing extends Component {
                       </button>
                     </Link>
                   </li>
-                  <Notifications {...this.state} />
                 </ul>
               </div>
             </div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { RemoteMongoClient } from 'mongodb-stitch-browser-sdk';
 import queryString from 'query-string';
+import _ from 'underscore';
 
 import Category from './Category';
 import Error from './Error';
@@ -145,7 +146,7 @@ class Home extends Component {
 
   renderPagination() {
     const pages = Math.ceil(this.state.items.length / 5);
-    return [...Array(pages).keys()].map(i => {
+    return _.range(pages).map(i => {
       const category = this.props.match.params.category;
       let link = category ? '/category/' + category : '/';
       link += '?page=' + i;

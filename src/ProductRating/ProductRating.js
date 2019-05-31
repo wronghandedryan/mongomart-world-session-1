@@ -1,8 +1,10 @@
 import React from 'react';
+import _ from 'underscore';
+
 import ProductRatingStar from './ProductRatingStar';
 
 const ProductRating = props => {
-  return [...Array(5).keys()].map(i => (
+  return _.range(5).map(i => (
     <ProductRatingStar num={i + 1} stars={props.stars} key={i} />
   ));
 };

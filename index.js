@@ -1,3 +1,6 @@
+// workaround for buffer bug in Stackblitz
+global.Buffer = require('safer-buffer').Buffer;
+
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
@@ -9,6 +12,8 @@ import Home from './src/Home';
 import ProductItemDetail from './src/ProductDetail/ProductItemDetail';
 
 import { stitchAppId, stitchClusterNames, jwtUser } from './src/config';
+
+import './public/css/shop-homepage.css';
 
 export default class Routing extends Component {
   constructor(props) {

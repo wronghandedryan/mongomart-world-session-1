@@ -1,7 +1,8 @@
 import React from 'react';
+import _ from 'underscore';
 
 const SelectQuantity = props => {
-  const options = [...Array(26).keys()].map(i => (
+  const options = _.range(26).map(i => (
     <QuantityOption quantity={i} key={i} />
   ));
 

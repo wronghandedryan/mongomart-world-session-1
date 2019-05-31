@@ -17,4 +17,7 @@ const jwtUser = {
     phone: '+1987654321'
 };
 
-export { stitchAppId, stitchClusterNames, jwtUser };
+// image URL
+const baseImgUrl = 'https://raw.githubusercontent.com/robbertkauffman/mongomart/master/public';
+
+export { stitchAppId, stitchClusterNames, jwtUser, baseImgUrl };

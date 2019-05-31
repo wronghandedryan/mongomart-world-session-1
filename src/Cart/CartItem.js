@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+import { baseImgUrl } from '../config';
 import SelectQuantity from './SelectQuantity';
 
 const CartItem = props => {
@@ -10,7 +12,7 @@ const CartItem = props => {
   }
 
   const itemLink = '/item/' + item._id;
-  const imgUrl = process.env.PUBLIC_URL + item.img_url;
+  const imgUrl = {baseImgUrl } + item.img_url;
 
   return (
     <tr>

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { baseImgUrl } from '../config';
+
 const ProductItem = props => {
   const item = props.item;
 
@@ -9,7 +11,7 @@ const ProductItem = props => {
   }
 
   const item_link = '/item/' + item._id;
-  const img_url = process.env.PUBLIC_URL + item.img_url;
+  const img_url = baseImgUrl + item.img_url;
 
   return (
     <React.Fragment>

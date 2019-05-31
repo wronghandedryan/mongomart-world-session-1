@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { RemoteMongoClient } from 'mongodb-stitch-browser-sdk';
 
+import { baseImgUrl } from '../config';
 import Error from '../Error';
 import AddToCart from './AddToCart';
 import ListReviews from '../Reviews/ListReviews';
@@ -131,7 +132,7 @@ export default class ProductItemDetail extends Component {
     }
 
     const categoryLink = '/category/' + item.category;
-    const img_url = process.env.PUBLIC_URL + item.img_url;
+    const img_url = baseImgUrl + item.img_url;
 
     if (!this.state.productError) {
       return (

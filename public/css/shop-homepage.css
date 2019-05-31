@@ -1,0 +1,213 @@
+/*!
+ * Start Bootstrap - Shop Homepage HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.slide-image {
+    width: 100%;
+}
+
+.carousel-holder {
+    margin-bottom: 30px;
+}
+
+.carousel-control,
+.item {
+    border-radius: 4px;
+}
+
+.caption {
+    height: 130px;
+    overflow: hidden;
+}
+
+.caption h4 {
+    white-space: nowrap;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+    color: #333;
+}
+
+footer {
+    margin: 50px 0;
+}
+
+.page-header {
+  margin-top: 0px;
+}
+
+.navbar-header .navbar-brand {
+  color: #fff;
+}
+
+.ratings {
+  padding-left: 0px;
+}
+
+.navbar-inverse .navbar-nav > li > a.no-link:focus, .navbar-inverse .navbar-nav > li > a.no-link:hover {
+    color: #9d9d9d;
+}
+
+.red-text {
+  color: red;
+}
+
+.reviews {
+  margin-top: 10px;
+}
+
+.error {
+  border: 1px solid red;
+  margin-bottom: 10px;
+}
+
+.edit-review {
+  margin-left: 10px;
+  color: #d17581;
+  font-size: 75%;
+}
+
+.add-review label.expand {
+  width: 100%;
+}
+
+button.success[disabled] {
+  background-color: green;
+}
+
+.navbar-form.navbar-right > * {
+  margin-left: 5px;
+}
+
+.checkout {
+  padding-right: 30px;
+  text-align: right;
+}
+
+.error-small {
+  margin-top: 10px;
+  padding: 10px;
+}
+
+img.product {
+  max-height: 253px;
+  margin: 0 auto;
+}
+
+#notifications {
+  position: relative;
+  margin-right: 15px;
+}
+
+#notifications .body {
+  display: none;
+  position: absolute;
+}
+
+#notifications:hover .body {
+  display: block;
+}
+
+#notifications .icon {
+  font-size: 1.75em;
+  /* padding-top: 7px; */
+  line-height: 34px;
+}
+
+#notifications.active .icon {
+  color: white;
+  background-color: transparent;
+}
+
+#notifications .counter {
+  display: none;
+  height: 3em;
+  top: 7px;
+  width: 3em;
+  position: absolute;
+  right: -25px;
+}
+
+#notifications.active .counter {
+  display: block;
+}
+
+#notifications span.counter-number {
+  color: white;
+  font-size: 1em;
+  position: absolute;
+  width: 1.5em;
+  text-align: center;
+  z-index: 999;
+}
+
+#notifications .counter-border {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid #5cb85c;
+  width: 1.5em;
+  height: 1.5em;
+}
+
+#main-nav-right > li > a {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.dropdown-menu .divider {
+  overflow: visible;
+  margin: 18px 0 9px;
+  position: relative;
+}
+
+#notifications .body .notification-item span, #notifications .body .notification-item button {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: 400;
+  line-height: 1.42857143;
+  color: #333;
+  white-space: nowrap;
+}
+
+#notifications .body .notification-item span:hover, #notifications .body .notification-item button:hover {
+  color: #262626;
+  background-color: #eee;
+}
+
+#notifications .body .notification-item button {
+  border: 0;
+  width: 100%;
+  text-align: left;
+}
+
+.dropdown-menu .divider .group-label {
+  background-color: white;
+  position: absolute;
+  left: 10px;
+  top: -10px;
+  padding: 0 9px;
+  font-weight: bold;
+  width: 4em;
+}

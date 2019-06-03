@@ -71,7 +71,7 @@ export default class Routing extends Component {
                           className="glyphicon glyphicon-shopping-cart"
                           aria-hidden="true"
                         />
-                        Cart
+                        &nbsp;Cart
                       </button>
                     </Link>
                   </li>

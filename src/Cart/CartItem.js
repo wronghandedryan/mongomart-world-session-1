@@ -12,7 +12,7 @@ const CartItem = props => {
   }
 
   const itemLink = '/item/' + item._id;
-  const imgUrl = {baseImgUrl } + item.img_url;
+  const imgUrl = baseImgUrl + item.img_url;
 
   return (
     <tr>

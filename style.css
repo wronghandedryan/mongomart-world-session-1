@@ -114,3 +114,8 @@ img.product {
   max-height: 253px;
   margin: 0 auto;
 }
+
+#main-nav-right > li > a { 
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

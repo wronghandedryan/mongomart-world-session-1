@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { RemoteMongoClient } from 'mongodb-stitch-browser-sdk';
 
-import { baseImgUrl } from '../config';
+import { baseImgUrl } from '../../config';
 import Error from '../Error';
 import AddToCart from './AddToCart';
 import ListReviews from '../Reviews/ListReviews';

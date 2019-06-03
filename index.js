@@ -4,14 +4,13 @@ global.Buffer = require('safer-buffer').Buffer;
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { Stitch, CustomCredential } from 'mongodb-stitch-browser-sdk';
-import jwt from 'jsonwebtoken';
+import { Stitch, AnonymousCredential } from 'mongodb-stitch-browser-sdk';
 
 import Cart from './src/Cart/Cart';
 import Home from './src/Home';
 import ProductItemDetail from './src/ProductDetail/ProductItemDetail';
 
-import { stitchAppId, stitchClusterNames, jwtUser } from './src/config';
+import { stitchAppId, stitchClusterNames } from './config';
 
 import './public/css/shop-homepage.css';
 
@@ -20,36 +19,21 @@ export default class Routing extends Component {
     super(props);
 
     const client = Stitch.initializeDefaultAppClient(stitchAppId);
-    const jwtString = jwt.sign(
-      { sub: '1234567890', aud: 'mongomart', ...jwtUser },
-      'mongomartmongomartmongomartmongomart',
-      { expiresIn: '1y' }
-    );
 
     this.state = {
       stitchClusterNames: stitchClusterNames,
       client: client,
       clientAuthenticated: client.auth.loginWithCredential(
-        new CustomCredential(jwtString)
-      ),
-      homeUrl: '/'
+        new AnonymousCredential()
+      )
     };
-
-    this.generateHomeUrl = this.generateHomeUrl.bind(this);
   }
 
   componentDidMount() {}
 
-  generateHomeUrl(node) {
-    // define home URL which is used by login redirect
-    if (node) {
-      this.setState({ homeUrl: node.getAttribute('href') });
-    }
-  }
-
   render() {
     return (
-      <Router basename={process.env.PUBLIC_URL}>
+      <Router>
         <React.Fragment>
           <nav
             className="navbar navbar-inverse navbar-fixed-top"
@@ -71,7 +55,6 @@ export default class Routing extends Component {
                 <Link
                   className="navbar-brand"
                   to="/"
-                  innerRef={this.generateHomeUrl}
                 >
                   MongoMart
                 </Link>
@@ -87,7 +70,7 @@ export default class Routing extends Component {
                         <span
                           className="glyphicon glyphicon-shopping-cart"
                           aria-hidden="true"
-                        />{' '}
+                        />
                         Cart
                       </button>
                     </Link>

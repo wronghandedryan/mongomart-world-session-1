@@ -9,15 +9,7 @@ const stitchClusterNames = {
     users: 'mongodb-atlas'
 };
 
-// replace with your name, email address and phone number
-// is used by notification functions
-const jwtUser = {
-    name: 'John Doe',
-    email: 'john.doe@bladieblaz.com',
-    phone: '+1987654321'
-};
-
 // image URL
 const baseImgUrl = 'https://raw.githubusercontent.com/robbertkauffman/mongomart/master/public';
 
-export { stitchAppId, stitchClusterNames, jwtUser, baseImgUrl };
+export { stitchAppId, stitchClusterNames, baseImgUrl };

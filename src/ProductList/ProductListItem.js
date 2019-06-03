@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { baseImgUrl } from '../config';
+import { baseImgUrl } from '../../config';
 
 const ProductItem = props => {
   const item = props.item;

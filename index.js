@@ -12,7 +12,7 @@ import ProductItemDetail from './src/ProductDetail/ProductItemDetail';
 
 import { stitchAppId, stitchClusterNames } from './config';
 
-import './public/css/shop-homepage.css';
+import './style.css';
 
 export default class Routing extends Component {
   constructor(props) {

@@ -132,7 +132,8 @@ export default class ProductItemDetail extends Component {
     }
 
     const categoryLink = '/category/' + item.category;
-    const img_url = baseImgUrl + item.img_url;
+    
+    const imgUrl = item.img_url ? baseImgUrl + item.img_url : undefined;
 
     if (!this.state.productError) {
       return (
@@ -160,7 +161,9 @@ export default class ProductItemDetail extends Component {
           </div>
           <div className="row">
             <div className="col-md-8">
-              <img className="img-responsive product" src={img_url} alt="" />
+              {imgUrl &&
+                <img className="img-responsive product" src={imgUrl} alt="" />
+              }
             </div>
 
             <div className="col-md-4">

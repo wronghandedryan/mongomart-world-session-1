@@ -1,15 +1,6 @@
 import React from 'react';
 
 const NotifyMeButton = props => {
-  if (props.client.auth.currentUser.loggedInProviderName === 'anon-user') {
-    return (
-      <p>
-        Please login if you want to be notified when the product comes back in
-        stock.
-      </p>
-    );
-  }
-
   if (!props.isNotificationCreated) {
     return (
       <button

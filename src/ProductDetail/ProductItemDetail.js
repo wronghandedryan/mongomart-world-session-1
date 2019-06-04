@@ -5,7 +5,7 @@ import { RemoteMongoClient } from 'mongodb-stitch-browser-sdk';
 import { baseImgUrl } from '../../config';
 import Error from '../Error';
 import AddToCart from './AddToCart';
-import LatestReviews from './LatestReviews/LatestReviews';
+import LatestReviews from '../LatestReviews/LatestReviews';
 import ProductRating from '../ProductRating/ProductRating';
 
 export default class ProductItemDetail extends Component {

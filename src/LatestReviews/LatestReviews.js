@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { RemoteMongoClient } from 'mongodb-stitch-browser-sdk';
 
 import Error from '../Error';
-import ListReviews from './Reviews/ListReviews';
+import ListReviews from './ListReviews';
 
 export default class LatestReviews extends Component {
   constructor(props) {

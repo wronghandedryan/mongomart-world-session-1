@@ -4,7 +4,7 @@ import { RemoteMongoClient } from 'mongodb-stitch-browser-sdk';
 import Error from '../Error';
 import ListReviews from './Reviews/ListReviews';
 
-export default class RecentReviews extends Component {
+export default class LatestReviews extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +14,7 @@ export default class RecentReviews extends Component {
   }
 
   componentDidMount() {
-    this.fetchReviews();
+    // this.fetchReviews();
   }
 
   fetchReviews() {
@@ -32,7 +32,7 @@ export default class RecentReviews extends Component {
   }
 
   render() {
-    if (!this.state.reviewsError) {
+    if (this.state.reviews.length > 0 && !this.state.reviewsError) {
       return (
         <div className="row reviews">
           <div className="col-lg-12">

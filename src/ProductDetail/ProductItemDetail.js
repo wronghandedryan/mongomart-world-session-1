@@ -5,8 +5,7 @@ import { RemoteMongoClient } from 'mongodb-stitch-browser-sdk';
 import { baseImgUrl } from '../../config';
 import Error from '../Error';
 import AddToCart from './AddToCart';
-import ListReviews from '../Reviews/ListReviews';
-import AddReview from '../Reviews/AddReview';
+import LatestReviews from './LatestReviews/LatestReviews';
 import ProductRating from '../ProductRating/ProductRating';
 
 export default class ProductItemDetail extends Component {
@@ -14,16 +13,12 @@ export default class ProductItemDetail extends Component {
     super(props);
     this.state = {
       item: {},
-      reviews: [],
-      productError: undefined,
-      reviewsError: undefined
+      productError: undefined
     };
-    this.handleAddReview = this.handleAddReview.bind(this);
   }
 
   componentDidMount() {
     this.fetchProduct();
-    this.fetchReviews();
   }
 
   fetchProduct() {
@@ -57,45 +52,6 @@ export default class ProductItemDetail extends Component {
         });
         console.error(err);
       });
-  }
-
-  fetchReviews() {
-    const itemId = parseInt(this.props.match.params.id);
-
-    const db = this.props.client
-      .getServiceClient(
-        RemoteMongoClient.factory,
-        this.props.stitchClusterNames.reviews
-      )
-      .db('mongomart');
-
-    this.props.clientAuthenticated
-      .then(() =>
-        db
-          .collection('reviews')
-          .find({ productId: itemId })
-          .asArray()
-      )
-      .then(response => {
-        if (response) {
-          this.setState({
-            reviews: response,
-            reviewsError: null
-          });
-        }
-      })
-      .catch(err => {
-        this.setState({
-          reviewsError: err
-        });
-        console.error(err);
-      });
-  }
-
-  handleAddReview(review) {
-    let updatedReviews = this.state.reviews;
-    updatedReviews.push(review);
-    this.setState({ reviews: updatedReviews });
   }
 
   render() {
@@ -193,29 +149,10 @@ export default class ProductItemDetail extends Component {
   }
 
   renderReviews() {
-    if (!this.state.reviewsError) {
-      return (
-        <div className="row reviews">
-          <div className="col-lg-12">
-            <h3 className="page-header">Latest Reviews</h3>
-          </div>
-          <div className="col-lg-12">
-            <ListReviews {...this.props} reviews={this.state.reviews} />
-            <AddReview
-              {...this.props}
-              productId={this.state.item._id}
-              onAddReview={this.handleAddReview}
-            />
-          </div>
-        </div>
-      );
-    } else {
-      return (
-        <Error
-          message={'Error while fetching reviews!'}
-          error={this.state.reviewsError}
-        />
-      );
-    }
+    const itemId = parseInt(this.props.match.params.id);
+
+    return (
+      <LatestReviews {...this.props} itemId={itemId} />
+    );
   }
 }

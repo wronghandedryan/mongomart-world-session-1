@@ -4,6 +4,7 @@ import { RemoteMongoClient } from 'mongodb-stitch-browser-sdk';
 import queryString from 'query-string';
 import _ from 'underscore';
 
+import { stitchClusterNames, dbName, collNames } from '../config';
 import Category from './Category';
 import Error from './Error';
 import ProductListItem from './ProductList/ProductListItem';
@@ -15,9 +16,9 @@ class Home extends Component {
       db: props.client
         .getServiceClient(
           RemoteMongoClient.factory,
-          props.stitchClusterNames.products
+          stitchClusterNames.products
         )
-        .db('mongomart'),
+        .db(dbName),
       categories: [],
       categoriesError: undefined,
       items: [],
@@ -40,7 +41,7 @@ class Home extends Component {
     this.props.clientAuthenticated
       .then(() =>
         this.state.db
-          .collection('item')
+          .collection(collNames.item)
           .aggregate([
             {
               $group: {
@@ -79,7 +80,7 @@ class Home extends Component {
     this.props.clientAuthenticated
       .then(() =>
         this.state.db
-          .collection('item')
+          .collection(collNames.item)
           .find(query, options)
           .asArray()
       )

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { RemoteMongoClient } from 'mongodb-stitch-browser-sdk';
 
+import { stitchClusterNames, dbName, collNames } from '../../config';
 import CartItem from './CartItem';
 import Error from '../Error';
 
@@ -12,9 +13,9 @@ class Cart extends Component {
       db: props.client
         .getServiceClient(
           RemoteMongoClient.factory,
-          props.stitchClusterNames.users
+          stitchClusterNames.users
         )
-        .db('mongomart'),
+        .db(dbName),
       cart: [],
       cartError: undefined,
       updateQuantityError: undefined
@@ -26,7 +27,7 @@ class Cart extends Component {
     this.props.clientAuthenticated
       .then(() =>
         this.state.db
-          .collection('users')
+          .collection(collNames.users)
           .find({ _id: this.props.client.auth.currentUser.id })
           .first()
       )
@@ -60,7 +61,7 @@ class Cart extends Component {
   removeCartItem(itemId) {
     this.props.clientAuthenticated
       .then(() =>
-        this.state.db.collection('users').updateOne(
+        this.state.db.collection(collNames.users).updateOne(
           {
             _id: this.props.client.auth.currentUser.id
           },
@@ -90,7 +91,7 @@ class Cart extends Component {
   updateCartQuantity(itemId, newQuantity) {
     this.props.clientAuthenticated
       .then(() =>
-        this.state.db.collection('users').updateOne(
+        this.state.db.collection(collNames.users).updateOne(
           {
             _id: this.props.client.auth.currentUser.id,
             'cart._id': itemId

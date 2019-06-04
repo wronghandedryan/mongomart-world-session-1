@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { RemoteMongoClient } from 'mongodb-stitch-browser-sdk';
 
+import { stitchClusterNames, dbName, collNames } from '../../config';
 import AddToCartButton from './AddToCartButton';
 import Error from '../Error';
 import NotifyMeButton from './NotifyMeButton';
@@ -13,9 +14,9 @@ export default class AddToCart extends Component {
       db: props.client
         .getServiceClient(
           RemoteMongoClient.factory,
-          props.stitchClusterNames.users
+          stitchClusterNames.users
         )
-        .db('mongomart'),
+        .db(dbName),
       isAddedToCart: false,
       isNotificationCreated: false,
       setNotificationError: undefined
@@ -42,7 +43,7 @@ export default class AddToCart extends Component {
     this.props.clientAuthenticated
       .then(() =>
         // increment quantity by one
-        this.state.db.collection('users').updateOne(incQuery, incUpdate)
+        this.state.db.collection(collNames.users).updateOne(incQuery, incUpdate)
       )
       .then(response => {
         if (response && response.modifiedCount !== 1) {
@@ -76,7 +77,7 @@ export default class AddToCart extends Component {
     this.props.clientAuthenticated
       .then(() =>
         this.state.db
-          .collection('users')
+          .collection(collNames.users)
           .updateOne(addQuery, addUpdate, options)
       )
       .then(() => {

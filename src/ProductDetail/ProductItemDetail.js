@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { RemoteMongoClient } from 'mongodb-stitch-browser-sdk';
 
-import { baseImgUrl } from '../../config';
+import { stitchClusterNames, dbName, collNames, baseImgUrl } from '../../config';
 import Error from '../Error';
 import AddToCart from './AddToCart';
 import LatestReviews from '../LatestReviews/LatestReviews';
@@ -27,14 +27,14 @@ export default class ProductItemDetail extends Component {
     const db = this.props.client
       .getServiceClient(
         RemoteMongoClient.factory,
-        this.props.stitchClusterNames.products
+        stitchClusterNames.products
       )
-      .db('mongomart');
+      .db(dbName);
 
     this.props.clientAuthenticated
       .then(() =>
         db
-          .collection('item')
+          .collection(collNames.item)
           .find({ _id: itemId }, { limit: 1 })
           .asArray()
       )

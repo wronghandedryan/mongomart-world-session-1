@@ -10,7 +10,7 @@ import Cart from './src/Cart/Cart';
 import Home from './src/Home';
 import ProductItemDetail from './src/ProductDetail/ProductItemDetail';
 
-import { stitchAppId, stitchClusterNames } from './config';
+import { stitchAppId, stitchClusterNames, dbName, collNames } from './config';
 
 import './style.css';
 

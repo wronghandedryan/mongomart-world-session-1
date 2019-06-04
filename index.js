@@ -9,6 +9,7 @@ import { Stitch, AnonymousCredential } from 'mongodb-stitch-browser-sdk';
 import Cart from './src/Cart/Cart';
 import Home from './src/Home';
 import ProductItemDetail from './src/ProductDetail/ProductItemDetail';
+import RecentReviews from './src/RecentReviews/RecentReviews';
 
 import { stitchAppId, stitchClusterNames } from './config';
 
@@ -75,6 +76,7 @@ export default class Routing extends Component {
                       </button>
                     </Link>
                   </li>
+                  {/*<li><Link to="/reviews">Reviews</Link></li>*/}
                 </ul>
               </div>
             </div>
@@ -96,6 +98,10 @@ export default class Routing extends Component {
             <Route
               path="/item/:id"
               render={props => <ProductItemDetail {...props} {...this.state} />}
+            />
+            <Route
+              path="/reviews"
+              render={props => <RecentReviews {...props} {...this.state} />}
             />
           </div>
         </React.Fragment>

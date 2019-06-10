@@ -6,11 +6,11 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { Stitch, AnonymousCredential } from 'mongodb-stitch-browser-sdk';
 
+import { stitchAppId, stitchClusterNames, dbName, collNames } from './config';
 import Cart from './src/Cart/Cart';
 import Home from './src/Home';
+import ImportData from './src/Import/ImportData';
 import ProductItemDetail from './src/ProductDetail/ProductItemDetail';
-
-import { stitchAppId, stitchClusterNames, dbName, collNames } from './config';
 
 import './style.css';
 
@@ -21,7 +21,6 @@ export default class Routing extends Component {
     const client = Stitch.initializeDefaultAppClient(stitchAppId);
 
     this.state = {
-      stitchClusterNames: stitchClusterNames,
       client: client,
       clientAuthenticated: client.auth.loginWithCredential(
         new AnonymousCredential()
@@ -97,6 +96,19 @@ export default class Routing extends Component {
               path="/item/:id"
               render={props => <ProductItemDetail {...props} {...this.state} />}
             />
+          </div>
+          <div className="container">
+            <hr/>
+            <footer>
+              <div className="row">
+                <div className="col-lg-12">
+                  <p>
+                    <span>Copyright &copy; MongoMart 2015 - 2016</span>
+                    <ImportData {...this.state}/>
+                  </p>
+                </div>
+              </div>
+            </footer>
           </div>
         </React.Fragment>
       </Router>

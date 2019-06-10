@@ -54,10 +54,6 @@ the Stitch app or when linking an Atlas Cluster to the app. Each of the three co
 hosted on a separate cluster or all on the same. In case of the latter you can use the same name 
 for each cluster.
 
-Finally, change the name, email address and phone number for the user by editing the `jwtUser`
-variable on line 14-18. This information is used by some of the Stitch Triggers and Stitch 
-Functions that sent notifications over email and phone.
-
 To install and run the application:
 
 ```bash

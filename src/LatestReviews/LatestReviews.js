@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { RemoteMongoClient } from 'mongodb-stitch-browser-sdk';
 
+import { stitchClusterNames, dbName, collNames } from '../../config';
 import Error from '../Error';
 import ListReviews from './ListReviews';
 

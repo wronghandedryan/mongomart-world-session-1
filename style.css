@@ -119,3 +119,25 @@ img.product {
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
+#footer-items > * {
+  margin-right: 10px;
+}
+
+.covert-button {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.covert-button:hover {
+  text-decoration: underline;
+}
+
+.covert-button.success {
+  color: green;
+}
+
+.covert-button.error {
+  color: red;
+}

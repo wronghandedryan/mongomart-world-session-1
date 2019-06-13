@@ -102,9 +102,10 @@ export default class Routing extends Component {
             <footer>
               <div className="row">
                 <div className="col-lg-12">
-                  <p>
+                  <p id="footer-items">
                     <span>Copyright &copy; MongoMart 2015 - 2016</span>
-                    <ImportData {...this.state}/>
+                    <span>&mdash;</span>
+                    <ImportData {...this.state} />
                   </p>
                 </div>
               </div>

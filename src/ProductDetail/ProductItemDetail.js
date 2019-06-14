@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { RemoteMongoClient } from 'mongodb-stitch-browser-sdk';
+import { BSON, RemoteMongoClient } from 'mongodb-stitch-browser-sdk';
 
 import { stitchClusterNames, dbName, collNames, baseImgUrl } from '../../config';
 import Error from '../Error';
@@ -22,7 +22,8 @@ export default class ProductItemDetail extends Component {
   }
 
   fetchProduct() {
-    const itemId = parseInt(this.props.match.params.id);
+    const itemId = new BSON.ObjectId(this.props.match.params.id);
+    console.log(itemId);
 
     const db = this.props.client
       .getServiceClient(

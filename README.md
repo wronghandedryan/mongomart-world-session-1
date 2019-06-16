@@ -109,7 +109,7 @@ set to 'XXX’"
 
 ## Bonus Exercise 1 — Displaying Reviews
 
-We’re going to display recent reviews for the product detail page
+We’re going to display recent reviews o the product detail page
 - Uncomment line 17 in _src/LatestReviews/LatestReviews.js_
 - Edit in same file:
   - Add following code to _fetchReviews()_ on line 21:
@@ -118,13 +118,15 @@ We’re going to display recent reviews for the product detail page
     const db = this.props.client.getServiceClient(
         RemoteMongoClient.factory, 
         stitchClusterNames.reviews)
-    .db(dbName);```
+    .db(dbName);
+    ```
     - Query database:
     ```js
     this.props.clientAuthenticated.then(() => db
         .collection(collNames.reviews)
         .find({})
-        .asArray())```
+        .asArray())
+    ```
     - Process response:
     ```js
     .then(response => {
@@ -134,7 +136,8 @@ We’re going to display recent reviews for the product detail page
           reviewsError: null
         });
       }
-    })```
+    })
+    ```
     - Error handling:
     ```js
     .catch(err => {
@@ -142,7 +145,8 @@ We’re going to display recent reviews for the product detail page
         reviewsError: err
       });
       console.error(err);
-    });```
+    });
+    ```
 - Test & Review: Go to live app, reload, and check one of the product pages
 
 

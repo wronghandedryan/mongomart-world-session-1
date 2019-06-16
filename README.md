@@ -1,9 +1,18 @@
-# MongoMart Stitch App
+# Build Web Apps Faster Using Stitch Rules & React
+_Author_: [Robbert Kauffman](mailto:robbert.kauffman@mongodb.com)
 
 ## Introduction
 
-Example app for MongoDB Stitch to showcase Stitch's QueryAnywhere / Rules feature, which enables
-RESTful APIs on top of MongoDB Atlas to easily query the data from other applications.
+Modern web applications are often built using API-based front-ends such as React, Angular, VueJs. In this session, we will dive into how Stitch can be used to provide APIs for your front-end, removing the need for writing and maintaining boilerplate back-end services, and having to manage and scale back-end servers. All to make developer’s lives easier.
+
+## Step 1 — Creating a Stitch App
+
+In [Atlas](https://cloud.mongodb.com):
+1. Navigate to _Stitch_ using the left hand navigation
+2. Click _Create New Application_
+3. In the dialog window, name the app, select one of your Atlas clusters to link it, and hit _Create_.
+
+![Stitch Application](images/step1.png "Atlas interface — Stitch")
 
 ## Import data
 

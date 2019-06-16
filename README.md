@@ -29,8 +29,7 @@ _Create_.
 ## Step 3 — Setting up MongoMart Front-end
 
 - Go to https://stackblitz.com/edit/mongomart-world-session-1
-   - StackBlitz is an online IDE and app server for easily editing code and running apps 
-   online
+  - StackBlitz is an online IDE and app server for easily editing code and running apps online
 
 ## StackBlitz
 
@@ -47,76 +46,64 @@ _Create_.
 - Reload page if you get the following error: "default app can only be set once; currently 
 set to 'XXX’"
 
+## Exercise 1.1 — Adding a read-rule
 
-## Import data
+- Go to your Stitch app
+- Go to _Rules_
+- Create a new rule by clicking on … and _Add Database/Collection_
+![Stitch Application](images/exercise1.1a.png "Stitch — Add Database/Collection")
+  - Enter *mongomart* as database name, and press return or click on _Create_
+  - Enter *item* as collection name, and press return or click _Create_
+  ![Stitch Application](images/exercise1.1b.png "Stitch — Create collection")
+  - Select _Users can only read all data_ as template
+  - Click the green _Add collection_ button at the bottom
+- Go back to the live app and reload: do you see any products?
+![Stitch Application](images/exercise1.1c.png "MongoMart — Exercise 1.1")
 
-Create a MongoDB cluster and import the data:
-```bash
-mongoimport --uri="mongodb+srv://USERNAME:PASSWORD@ATLAS_CLUSTER_NAME.mongodb.net/mongomart" -c reviews --file=data/reviews.json
-mongoimport --uri="mongodb+srv://USERNAME:PASSWORD@ATLAS_CLUSTER_NAME.mongodb.net/mongomart" -c item --file=data/item.json
-```
+## Exercise 1.2 — Temporary permissions for Importing data
 
-After importing the data, create a Stitch app and link it to the cluster that you have just imported 
-the data to. For more information on how to create a Stitch app, see: 
-https://docs.mongodb.com/stitch/procedures/create-stitch-app/
+- Go back to the item-rule in _Rules_ in your Stitch App
+- Enable write-permissions by checking the _Write_ checkboxes
+- Edit the _default_ (1) permissions and:
+![Stitch Application](images/exercise1.2a.png "Stitch — Edit default permissions")
+  - Enable _Insert Documents_ and _Delete Documents_
+  ![Stitch Application](images/exercise1.2b.png "Stitch — Enable Insert Documents and Delete Documents")
+  - Click _Done Editing_
+- Don’t forget to click _Save_ on the top right
+- Go back to the live app and:
+  - Click the _Import Items_ link in the footer
+  - Reload
+  - Products should now be visible!
+  ![Stitch Application](images/exercise1.2c.png "MongoMart — Exercise 1.2")
 
-Once you have created the Stitch app, do the following:
-- Turn on *Anonymous authentication* using the toggle of Step 2 on the *Getting Started* page.
-- Using the navigation on the left, go to *Rules* and create the following rules:
-  - On the *Rules* page, click on the ellipsis next to the name of your linked cluster, click *Add 
-    Database/Collection*:
-    - As database name use *mongomart*, as collection name use *item*, and as template select *Users 
-      can only read all data*. Click *Add Collection*.
-  - Add another rule:
-    - As database name use *mongomart*, as collection name use *reviews*, and as template select 
-      *Users can read all data, but only write their own data*. Enter *userid* as Field Name For User 
-      ID. Click *Add Collection*.
-  - Add one final rule:
-    - As database name use *mongomart* and as collection name use *users*. Please note that the 
-      *users* collection doesn't exist yet, so you will have to create it by typing its name and 
-      clicking on Create "users" or hitting Return. As template select *Users can only read and 
-      write their own data*. Enter *_id* as Field Name For User ID. Click *Add Collection*.
-      - For more fine-grained access controls, you can set write access on the *cart* field so that
-        users cannot update their username but can only update their cart. You can do this by 
-        clicking *Add Field* and enter *cart* as the fieldname. Then uncheck the box *All additional
-        fields* under the column *Write*.
+## Exercise 1.3 — Fixing the rule
 
-Finally, copy the App ID that is displayed on the top left of the screen. This app ID needs to be 
-used by the front-end application in the next step.
+- Go back to the item-rule in _Rules_ in your Stitch App
+- Disable the write-permissions by unchecking the _Write_ checkboxes
+- Don’t forget to click _Save_ on the top right
+- All set now!
 
-## Install and run app
+## Exercise 2 — Adding a write-rule
 
-The application is built using React. To install and run the application NPM or Yarn is required.
+- Go back to _Rules_ in your Stitch App
+- Create a new rule by clicking on … and _Add Database/Collection_
+  - Enter *mongomart* as database name
+  - Enter *users* as collection name, and press return or click _Create_
+  - Select _Users can only read and write their own data_ as template
+  - Enter *_id* for field name for User ID
+  - Click the green _Add collection_ button at the bottom
+- Go back to live app, reload, and:
+  - Cart should now be visible and you should be able to add products to cart from product 
+  detail pages!
 
-First, update the Stitch App ID in the application by editing `src/config.js` and replacing 
-*YOUR_STITCH_APP_ID* on line 2 with your Stitch App ID.
+## Exercise 3 — Adding a Stitch function
 
-Then update the Stitch Service Names by editing the `stitchClusterNames` variable in the same file 
-on line 6-10. The service names are the names you have given to any linked clusters when creating 
-the Stitch app or when linking an Atlas Cluster to the app. Each of the three collections can be 
-hosted on a separate cluster or all on the same. In case of the latter you can use the same name 
-for each cluster.
-
-To install and run the application:
-
-```bash
-$ npm install
-$ npm start
-```
-
-You should now be able to view the application by opening [http://localhost:3000](http://localhost:3000) 
-in the browser.
-
-## Build and upload to Stitch Hosting
-
-You can use Stitch Hosting to host the React app. First build the application:
-
-```bash
-$ npm run build
-```
-
-Now go to Stitch Hosting and enable Stitch Hosting if you haven't done so yet. Then click on *Upload 
-Files* and upload all of the files of the *build* directory. You have to create all of the subfolders
-manually. Once you've finished uploading, go to the tab *Settings* and configure a *Custom 404 Page* 
-by clicking *Choose File*. Browse to the file *404.html* and click on *Select a File* and hit *Save*. 
-Any 404 pages will now use the 404.html file which contains a workaround to enable React Routing.
+- Go to _Functions_ in your Stitch App
+- _Create New Function_
+  - Use the name *setNotification* (case sensitive)
+  - Check the _Run As System_ toggle
+  - Click _Save_
+  - Copy + paste code from _stitch/setNotification.js_ from app in Stackblitz
+  - Click _Save_
+- Go back to live app, reload, and:
+  - View the Coffee Mug detail page and click on _Notify me when in stock_

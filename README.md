@@ -3,14 +3,18 @@ _Author_: [Robbert Kauffman](mailto:robbert.kauffman@mongodb.com)
 
 ## Introduction
 
-Modern web applications are often built using API-based front-ends such as React, Angular, VueJs. In this session, we will dive into how Stitch can be used to provide APIs for your front-end, removing the need for writing and maintaining boilerplate back-end services, and having to manage and scale back-end servers. All to make developer’s lives easier.
+Modern web applications are often built using API-based front-ends such as React, Angular, 
+VueJs. In this session, we will dive into how Stitch can be used to provide APIs for your 
+front-end, removing the need for writing and maintaining boilerplate back-end services, and 
+having to manage and scale back-end servers. All to make developer’s lives easier.
 
 ## Step 1 — Creating a Stitch App
 
 In [Atlas](https://cloud.mongodb.com):
 1. Navigate to _Stitch_ using the left hand navigation
 2. Click _Create New Application_
-3. In the dialog window, name the app, select one of your Atlas clusters to link it, and hit _Create_.
+3. In the dialog window, name the app, select one of your Atlas clusters to link it, and hit 
+_Create_.
 
 ![Stitch Application](images/step1.png "Atlas interface — Stitch")
 
@@ -18,9 +22,30 @@ In [Atlas](https://cloud.mongodb.com):
 
 - Open your app by selecting it from the Stitch Applications list
 - On the Getting Started screen: Turn on Anonymous Authentication 
-![Stitch Application](images/step2.png "Atlas interface — Stitch")
+![Stitch Application](images/step2a.png "Stitch — Anonymous Authentication toggle")
 - Copy your Stitch App ID in top-left corner
+![Stitch Application](images/step2b.png "Stitch — Stitch App ID")
 
+## Step 3 — Setting up MongoMart Front-end
+
+- Go to https://stackblitz.com/edit/mongomart-world-session-1
+   - StackBlitz is an online IDE and app server for easily editing code and running apps 
+   online
+
+## StackBlitz
+
+![Stitch Application](images/stackblitz.png "StackBlitz interface")
+
+*Warning*: changes are not saved on closing tab/browser. Click Fork (1) and write down the new URL if you want changes to be saved
+
+## Step 4 — Setting up MongoMart Front-end
+
+- Edit config.js: change value of Stitch app ID on line 2 to your Stitch App ID
+![Stitch Application](images/step4a.png "StackBlitz — Edit config.js")
+- Click on Open in New Window on top-right. Your screen should look like this:
+![Stitch Application](images/step4b.png "MongoMart — Errors at step 4")
+- Reload page if you get the following error: "default app can only be set once; currently 
+set to 'XXX’"
 
 
 ## Import data

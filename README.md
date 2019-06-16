@@ -14,6 +14,17 @@ In [Atlas](https://cloud.mongodb.com):
 
 ![Stitch Application](images/step1.png "Atlas interface — Stitch")
 
+## Step 2 — Setting up Stitch App
+
+Open your app by selecting it from the Stitch Applications list
+
+On the Getting Started screen:
+Turn on Anonymous Authentication
+
+
+Copy your Stitch App ID in top-left corner
+
+
 ## Import data
 
 Create a MongoDB cluster and import the data:

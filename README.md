@@ -35,13 +35,11 @@ _Create_.
 
 ![Stitch Application](images/stackblitz.png "StackBlitz interface")
 
-*Warning*: changes are not saved on closing tab/browser. Click Fork (1) and write down the new URL if you want changes to be saved
-
 ## Step 4 — Setting up MongoMart Front-end
 
 - Edit config.js: change value of Stitch app ID on line 2 to your Stitch App ID
 - Click on Open in New Window on top-right. Your screen should look like this:
-![Stitch Application](images/step4b.png "MongoMart — Errors at step 4")
+![Stitch Application](images/step4b.png "MongoMart — Stitch Rules errors")
 - Reload page if you get the following error: "default app can only be set once; currently 
 set to 'XXX’"
 
@@ -57,7 +55,7 @@ set to 'XXX’"
   - Select _Users can only read all data_ as template
   - Click the green _Add collection_ button at the bottom
 - Go back to the live app and reload: do you see any products?
-![Stitch Application](images/exercise1.1c.png "MongoMart — Exercise 1.1")
+![Stitch Application](images/exercise1.1c.png "MongoMart — Empty product list")
 
 ## Exercise 1.2 — Temporary permissions for Importing data
 
@@ -73,7 +71,7 @@ set to 'XXX’"
   - Click the _Import Items_ link in the footer
   - Reload
   - Products should now be visible!
-  ![Stitch Application](images/exercise1.2c.png "MongoMart — Exercise 1.2")
+  ![Stitch Application](images/exercise1.2c.png "MongoMart — Products visible")
 
 ## Exercise 1.3 — Fixing the rule
 
@@ -94,6 +92,7 @@ set to 'XXX’"
 - Go back to live app, reload, and:
   - Cart should now be visible and you should be able to add products to cart from product 
   detail pages!
+  ![Stitch Application](images/exercise2.png "MongoMart — Cart")
 
 ## Exercise 3 — Adding a Stitch function
 
@@ -102,14 +101,17 @@ set to 'XXX’"
   - Use the name *setNotification* (case sensitive)
   - Check the _Run As System_ toggle
   - Click _Save_
-  - Copy + paste code from _stitch/setNotification.js_ from app in Stackblitz
+  - Copy code from _stitch/setNotification.js_ from app in Stackblitz
+  - Open _Function Editor_ tab in Stitch
+  - ![Stitch Application](images/exercise3a.png "Stitch — Function Editor")
   - Click _Save_
 - Go back to live app, reload, and:
-  - View the Coffee Mug detail page and click on _Notify me when in stock_
+  - View the _Coffee Mug_ detail page and click on _Notify me when in stock_
+  ![Stitch Application](images/exercise3b.png "MongoMart — Notify me when in stock")
 
 ## Bonus Exercise 1 — Displaying Reviews
 
-We’re going to display recent reviews o the product detail page
+We’re going to display recent reviews on the product detail page
 - Uncomment line 17 in _src/LatestReviews/LatestReviews.js_
 - Edit in same file:
   - Add following code to _fetchReviews()_ on line 21:
@@ -148,6 +150,4 @@ We’re going to display recent reviews o the product detail page
     });
     ```
 - Test & Review: Go to live app, reload, and check one of the product pages
-
-
-
+![Stitch Application](images/exercise-bonus.png "MongoMart — Latest reviews")

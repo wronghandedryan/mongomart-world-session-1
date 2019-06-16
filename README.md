@@ -40,7 +40,6 @@ _Create_.
 ## Step 4 — Setting up MongoMart Front-end
 
 - Edit config.js: change value of Stitch app ID on line 2 to your Stitch App ID
-![Stitch Application](images/step4a.png "StackBlitz — Edit config.js")
 - Click on Open in New Window on top-right. Your screen should look like this:
 ![Stitch Application](images/step4b.png "MongoMart — Errors at step 4")
 - Reload page if you get the following error: "default app can only be set once; currently 
@@ -107,3 +106,44 @@ set to 'XXX’"
   - Click _Save_
 - Go back to live app, reload, and:
   - View the Coffee Mug detail page and click on _Notify me when in stock_
+
+## Bonus Exercise 1 — Displaying Reviews
+
+We’re going to display recent reviews for the product detail page
+- Uncomment line 17 in _src/LatestReviews/LatestReviews.js_
+- Edit in same file:
+  - Add following code to _fetchReviews()_ on line 21:
+    - Get database handle:
+    ```js
+    const db = this.props.client.getServiceClient(
+        RemoteMongoClient.factory, 
+        stitchClusterNames.reviews)
+    .db(dbName);```
+    - Query database:
+    ```js
+    this.props.clientAuthenticated.then(() => db
+        .collection(collNames.reviews)
+        .find({})
+        .asArray())```
+    - Process response:
+    ```js
+    .then(response => {
+      if (response) {
+        this.setState({
+          reviews: response,
+          reviewsError: null
+        });
+      }
+    })```
+    - Error handling:
+    ```js
+    .catch(err => {
+      this.setState({
+        reviewsError: err
+      });
+      console.error(err);
+    });```
+- Test & Review: Go to live app, reload, and check one of the product pages
+
+
+

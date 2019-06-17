@@ -98,7 +98,7 @@ export default class AddToCart extends Component {
   }
 
   handleSetNotification() {
-    const args = [this.props.item._id, this.props.client.auth.currentUser.id];
+    const args = [this.props.item._id.toString()];
     this.props.client
       .callFunction('setNotification', args)
       .then(result => {

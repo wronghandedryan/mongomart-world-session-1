@@ -1,10 +1,10 @@
 exports = function(itemId) {
   const currentUser = context.user;
 
-  if (itemId && typeof itemId === 'number') {
+  if (itemId) {
     return setNotification(itemId, currentUser.id);
   } else {
-    console.error("Incorrect item ID provided: " + JSON.stringify(itemId));
+    console.error("No item ID provided: " + JSON.stringify(itemId));
     return false;
   }
 };

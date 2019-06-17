@@ -87,7 +87,7 @@ set to 'XXX’"
   - Enter `mongomart` as database name
   - Enter `users` as collection name, and press return or click *Create*
   - Select *Users can only read and write their own data* as template
-  - Enter `*id` for field name for User ID
+  - Enter `_id` for field name for User ID
   - Click the green *Add collection* button at the bottom
 - Go back to live app, reload, and:
   - Cart should now be visible and you should be able to add products to cart from product 

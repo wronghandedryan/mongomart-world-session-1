@@ -1,5 +1,5 @@
 # Build Web Apps Faster Using Stitch Rules & React
-_Author_: [Robbert Kauffman](mailto:robbert.kauffman@mongodb.com)
+*Author*: [Robbert Kauffman](mailto:robbert.kauffman@mongodb.com)
 
 ## Introduction
 
@@ -11,10 +11,10 @@ having to manage and scale back-end servers. All to make developer’s lives eas
 ## Step 1 — Creating a Stitch App
 
 In [Atlas](https://cloud.mongodb.com):
-1. Navigate to _Stitch_ using the left hand navigation
-2. Click _Create New Application_
+1. Navigate to *Stitch* using the left hand navigation
+2. Click *Create New Application*
 3. In the dialog window, name the app, select one of your Atlas clusters to link it, and hit 
-_Create_.
+*Create*.
 
 ![Stitch Application](images/step1.png "Atlas interface — Stitch")
 
@@ -46,49 +46,49 @@ set to 'XXX’"
 ## Exercise 1.1 — Adding a read-rule
 
 - Go to your Stitch app
-- Go to _Rules_
-- Create a new rule by clicking on … and _Add Database/Collection_
+- Go to *Rules*
+- Create a new rule by clicking on … and *Add Database/Collection*
 ![Stitch Application](images/exercise1.1a.png "Stitch — Add Database/Collection")
-  - Enter *mongomart* as database name, and press return or click on _Create_
-  - Enter *item* as collection name, and press return or click _Create_
+  - Enter `mongomart` as database name, and press return or click on *Create*
+  - Enter `item` as collection name, and press return or click *Create*
   ![Stitch Application](images/exercise1.1b.png "Stitch — Create collection")
-  - Select _Users can only read all data_ as template
-  - Click the green _Add collection_ button at the bottom
+  - Select *Users can only read all data* as template
+  - Click the green *Add collection* button at the bottom
 - Go back to the live app and reload: do you see any products?
 ![Stitch Application](images/exercise1.1c.png "MongoMart — Empty product list")
 
 ## Exercise 1.2 — Temporary permissions for Importing data
 
-- Go back to the item-rule in _Rules_ in your Stitch App
-- Enable write-permissions by checking the _Write_ checkboxes
-- Edit the _default_ (1) permissions and:
+- Go back to the item-rule in *Rules* in your Stitch App
+- Enable write-permissions by checking the *Write* checkboxes
+- Edit the *default* (1) permissions and:
 ![Stitch Application](images/exercise1.2a.png "Stitch — Edit default permissions")
-  - Enable _Insert Documents_ and _Delete Documents_
+  - Enable *Insert Documents* and *Delete Documents*
   ![Stitch Application](images/exercise1.2b.png "Stitch — Enable Insert Documents and Delete Documents")
-  - Click _Done Editing_
-- Don’t forget to click _Save_ on the top right
+  - Click *Done Editing*
+- Don’t forget to click *Save* on the top right
 - Go back to the live app and:
-  - Click the _Import Items_ link in the footer
+  - Click the *Import Items* link in the footer
   - Reload
   - Products should now be visible!
   ![Stitch Application](images/exercise1.2c.png "MongoMart — Products visible")
 
 ## Exercise 1.3 — Fixing the rule
 
-- Go back to the item-rule in _Rules_ in your Stitch App
-- Disable the write-permissions by unchecking the _Write_ checkboxes
-- Don’t forget to click _Save_ on the top right
+- Go back to the item-rule in *Rules* in your Stitch App
+- Disable the write-permissions by unchecking the *Write* checkboxes
+- Don’t forget to click *Save* on the top right
 - All set now!
 
 ## Exercise 2 — Adding a write-rule
 
-- Go back to _Rules_ in your Stitch App
-- Create a new rule by clicking on … and _Add Database/Collection_
-  - Enter *mongomart* as database name
-  - Enter *users* as collection name, and press return or click _Create_
-  - Select _Users can only read and write their own data_ as template
-  - Enter *_id* for field name for User ID
-  - Click the green _Add collection_ button at the bottom
+- Go back to *Rules* in your Stitch App
+- Create a new rule by clicking on … and *Add Database/Collection*
+  - Enter `mongomart` as database name
+  - Enter `users` as collection name, and press return or click *Create*
+  - Select *Users can only read and write their own data* as template
+  - Enter `*id` for field name for User ID
+  - Click the green *Add collection* button at the bottom
 - Go back to live app, reload, and:
   - Cart should now be visible and you should be able to add products to cart from product 
   detail pages!
@@ -96,25 +96,26 @@ set to 'XXX’"
 
 ## Exercise 3 — Adding a Stitch function
 
-- Go to _Functions_ in your Stitch App
-- _Create New Function_
-  - Use the name *setNotification* (case sensitive)
-  - Check the _Run As System_ toggle
-  - Click _Save_
-  - Copy code from _stitch/setNotification.js_ from app in Stackblitz
-  - Open _Function Editor_ tab in Stitch
-  - ![Stitch Application](images/exercise3a.png "Stitch — Function Editor")
-  - Click _Save_
+- Go to *Functions* in your Stitch App
+- *Create New Function*
+  - Use the name `setNotification` (case sensitive)
+  - Check the *Run As System* toggle
+  ![Stitch Application](images/exercise3a.png "Stitch — Run As System")
+  - Click *Save*
+  - Copy code from *stitch/setNotification.js* from app in Stackblitz
+  - Open *Function Editor* tab in Stitch
+  ![Stitch Application](images/exercise3b.png "Stitch — Function Editor")
+  - Click *Save*
 - Go back to live app, reload, and:
-  - View the _Coffee Mug_ detail page and click on _Notify me when in stock_
-  ![Stitch Application](images/exercise3b.png "MongoMart — Notify me when in stock")
+  - View the *Coffee Mug* detail page and click on *Notify me when in stock*
+  ![Stitch Application](images/exercise3c.png "MongoMart — Notify me when in stock")
 
 ## Bonus Exercise 1 — Displaying Reviews
 
 We’re going to display recent reviews on the product detail page
-- Uncomment line 17 in _src/LatestReviews/LatestReviews.js_
+- Uncomment line 17 in *src/LatestReviews/LatestReviews.js*
 - Edit in same file:
-  - Add following code to _fetchReviews()_ on line 21:
+  - Add following code to *fetchReviews()* on line 21:
     - Get database handle:
     ```js
     const db = this.props.client.getServiceClient(

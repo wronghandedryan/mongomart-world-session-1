@@ -23,7 +23,6 @@ export default class ProductItemDetail extends Component {
 
   fetchProduct() {
     const itemId = new BSON.ObjectId(this.props.match.params.id);
-    console.log(itemId);
 
     const db = this.props.client
       .getServiceClient(

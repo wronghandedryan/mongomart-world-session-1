@@ -1,5 +1,5 @@
 // replace with your Stitch app ID
-const stitchAppId = 'mongomartstore-wxwos';
+const stitchAppId = 'YOUR_STITCH_APP_I';
 
 // replace with Stitch server names of the linked cluster(s)
 // can use the same name for all three if products, reviews and users are stored on the same cluster

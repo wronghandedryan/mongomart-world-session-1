@@ -5,7 +5,7 @@ import { BSON, RemoteMongoClient } from 'mongodb-stitch-browser-sdk';
 import { stitchClusterNames, dbName, collNames, baseImgUrl } from '../../config';
 import Error from '../Error';
 import AddToCart from './AddToCart';
-import LatestReviews from '../LatestReviews/LatestReviews';
+import Reviews from '../Reviews/Reviews';
 import ProductRating from '../ProductRating/ProductRating';
 
 export default class ProductItemDetail extends Component {
@@ -52,6 +52,12 @@ export default class ProductItemDetail extends Component {
         });
         console.error(err);
       });
+  }
+
+  handleAddReview(review) {
+    let updatedReviews = this.state.reviews;
+    updatedReviews.push(review);
+    this.setState({ reviews: updatedReviews });
   }
 
   render() {
@@ -152,7 +158,7 @@ export default class ProductItemDetail extends Component {
     const itemId = parseInt(this.props.match.params.id);
 
     return (
-      <LatestReviews {...this.props} itemId={itemId} />
+      <Reviews {...this.props} itemId={itemId} onAddReview={this.handleAddReview} />
     );
   }
 }

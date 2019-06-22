@@ -13,8 +13,11 @@ export default class ProductItemDetail extends Component {
     super(props);
     this.state = {
       item: {},
+      reviews: [],
       productError: undefined
     };
+    this.handleAddReview = this.handleAddReview.bind(this);
+    this.handleFetchReviews = this.handleFetchReviews.bind(this);
   }
 
   componentDidMount() {
@@ -52,6 +55,10 @@ export default class ProductItemDetail extends Component {
         });
         console.error(err);
       });
+  }
+
+  handleFetchReviews(reviews) {
+    this.setState({ reviews: reviews });
   }
 
   handleAddReview(review) {
@@ -158,7 +165,7 @@ export default class ProductItemDetail extends Component {
     const itemId = parseInt(this.props.match.params.id);
 
     return (
-      <Reviews {...this.props} itemId={itemId} onAddReview={this.handleAddReview} />
+      <Reviews {...this.props} itemId={itemId} onFetchReviews={this.handleFetchReviews} onAddReview={this.handleAddReview} />
     );
   }
 }

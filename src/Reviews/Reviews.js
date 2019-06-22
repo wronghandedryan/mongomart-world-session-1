@@ -13,6 +13,7 @@ export default class LatestReviews extends Component {
       reviews: [],
       reviewsError: undefined
     };
+    this.handleAddReview = this.handleAddReview.bind(this);
   }
 
   componentDidMount() {
@@ -39,6 +40,7 @@ export default class LatestReviews extends Component {
           reviews: response,
           reviewsError: null
         });
+        this.props.onFetchReviews(response);
       }
     })
 
@@ -51,6 +53,13 @@ export default class LatestReviews extends Component {
     });
   }
 
+  handleAddReview(review) {
+    let updatedReviews = this.state.reviews;
+    updatedReviews.push(review);
+    this.setState({ reviews: updatedReviews });
+    // this.props.onAddReview(review);
+  }
+
   render() {
     if (this.state.reviews.length > 0 && !this.state.reviewsError) {
       return (
@@ -61,8 +70,8 @@ export default class LatestReviews extends Component {
           <ListReviews {...this.props} reviews={this.state.reviews} />
           <AddReview
               {...this.props}
-              productId={this.itemId}
-              onAddReview={this.props.onAddReview}
+              productId={this.props.itemId}
+              onAddReview={this.handleAddReview}
             />
         </div>
       );

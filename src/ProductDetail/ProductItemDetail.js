@@ -162,7 +162,7 @@ export default class ProductItemDetail extends Component {
   }
 
   renderReviews() {
-    const itemId = parseInt(this.props.match.params.id);
+    const itemId = this.props.match.params.id;
 
     return (
       <Reviews {...this.props} itemId={itemId} onFetchReviews={this.handleFetchReviews} onAddReview={this.handleAddReview} />

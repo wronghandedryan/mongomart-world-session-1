@@ -24,6 +24,7 @@ In [Atlas](https://cloud.mongodb.com):
   open after a few minutes
 - On the Getting Started screen: Turn on Anonymous Authentication 
 ![Stitch Application](images/step2a.png "Stitch — Anonymous Authentication toggle")
+- Click *Review & Deploy Changes* at the top and click *Deploy* in the dialog window
 - Copy your Stitch App ID in top-left corner
 ![Stitch Application](images/step2b.png "Stitch — Stitch App ID")
 
@@ -54,6 +55,7 @@ In [Atlas](https://cloud.mongodb.com):
   ![Stitch Application](images/exercise1.1b.png "Stitch — Create collection")
   - Select *Users can only read all data* as template
   - Click the green *Add collection* button at the bottom
+  - Click *Review & Deploy Changes* at the top and click *Deploy* in the dialog window
 - Go back to the Live App and reload: do you see any products?
 ![Stitch Application](images/exercise1.1c.png "MongoMart — Empty product list")
 
@@ -66,7 +68,7 @@ In [Atlas](https://cloud.mongodb.com):
   - Enable *Insert Documents* and *Delete Documents*
   ![Stitch Application](images/exercise1.2b.png "Stitch — Enable Insert Documents and Delete Documents")
   - Click *Done Editing*
-- Don’t forget to click *Save* on the top right
+- Don’t forget to click *Save* on the top right and *Review & Deploy Changes*
 - Go back to the Live App and:
   - Click the *Import Items* link in the footer
   - Reload
@@ -81,7 +83,7 @@ In [Atlas](https://cloud.mongodb.com):
 - Edit the default permissions and:
   - Uncheck Insert Documents and Delete Documents
   - Click Done Editing
-- Don’t forget to click *Save* on the top right
+- Don’t forget to click *Save* on the top right and *Review & Deploy Changes*
 - All set now!
 
 ## Exercise 2 — Adding a write-rule
@@ -90,16 +92,64 @@ In [Atlas](https://cloud.mongodb.com):
 - Create a new rule by clicking on … and *Add Database/Collection*
 ![Stitch Application](images/exercise2a.png "MongoMart — Add Database/Collection")
   - Enter `mongomart` as database name
-  - Enter `users` as collection name, and press return or click *Create*
-  - Select *Users can only read and write their own data* as template
-  - Enter `_id` for field name for User ID
+  - Enter `reviews` as collection name, and press return or click *Create*
+  - Select *Users can read all data, but only write their own data* as template
+  - Enter `userid` for field name for User ID
   - Click the green *Add collection* button at the bottom
+  - *Review & Deploy Changes*
 - Go back to Live App, reload, and:
   - Cart should now be visible and you should be able to add products to cart from product 
   detail pages!
   ![Stitch Application](images/exercise2b.png "MongoMart — Cart")
 
-## Exercise 3 — Adding a Stitch function
+## Exercise 3 - Displaying Reviews
+
+We’re going to display recent reviews for the product detail page.
+- Uncomment line 20 in *src/Reviews/Reviews.js*
+- Edit in same file:
+  - Add following code to fetchReviews() on line 25:
+    - Get database handle:
+      ```js
+        const db = this.props.client
+          .getServiceClient(
+            RemoteMongoClient.factory,
+            stitchClusterNames.reviews
+          )
+          .db(dbName);
+      ```
+    - Query database:
+      ```js
+      this.props.clientAuthenticated
+        .then(() => db
+          .collection(collNames.reviews)
+          .find({productId: this.props.itemId})
+          .asArray()
+        )
+      ```
+    - Process response:
+      ```js
+      .then(response => {
+        if (response) {
+          this.setState({
+            reviews: response,
+            reviewsError: null
+          });
+        }
+      })
+      ```
+    - Error handling:
+      ```js
+      .catch(err => {
+        this.setState({
+          reviewsError: err
+        });
+        console.error(err);
+      });
+      ```
+- Test & Review: Go to Live App, reload, go to one of the product pages and try submitting a review.
+![Stitch Application](images/exercise-bonus.png "MongoMart — Latest reviews")
+
+## Exercise 4 — Adding a Stitch function
 
 - Go to *Functions* in your Stitch App
 - Click *Create New Function*
@@ -111,49 +161,23 @@ In [Atlas](https://cloud.mongodb.com):
     Stackblitz
   ![Stitch Application](images/exercise3b.png "Stitch — Function Editor")
   - Click *Save*
+  - *Review & Deploy Changes*
 - Go back to Live app, reload, and:
   - View the *Coffee Mug* detail page and click on *Notify me when in stock*
   ![Stitch Application](images/exercise3c.png "MongoMart — Notify me when in stock")
 
-## Bonus Exercise 1 — Displaying Reviews
+## Bonus Exercise - Enabling Cart
 
-We’re going to display recent reviews on the product detail page
-- Uncomment line 17 in *src/LatestReviews/LatestReviews.js*
-- Edit in same file:
-  - Add following code to *fetchReviews()* on line 21:
-    - Get database handle:
-    ```js
-    const db = this.props.client.getServiceClient(
-        RemoteMongoClient.factory, 
-        stitchClusterNames.reviews)
-    .db(dbName);
-    ```
-    - Query database:
-    ```js
-    this.props.clientAuthenticated.then(() => db
-        .collection(collNames.reviews)
-        .find({})
-        .asArray())
-    ```
-    - Process response:
-    ```js
-    .then(response => {
-      if (response) {
-        this.setState({
-          reviews: response,
-          reviewsError: null
-        });
-      }
-    })
-    ```
-    - Error handling:
-    ```js
-    .catch(err => {
-      this.setState({
-        reviewsError: err
-      });
-      console.error(err);
-    });
-    ```
-- Test & Review: Go to live app, reload, and check one of the product pages
-![Stitch Application](images/exercise-bonus.png "MongoMart — Latest reviews")
+- Go back to *Rules* in your Stitch App
+- Create a new rule by clicking on … and *Add Database/Collection*
+![Stitch Application](images/exercise2a.png "MongoMart — Add Database/Collection")
+  - Enter `mongomart` as database name
+  - Enter `users` as collection name, and press return or click *Create*
+  - Select *Users can only read and write their own data* as template
+  - Enter `_id` for field name for User ID
+  - Click the green *Add collection* button at the bottom
+  - *Review & Deploy Changes*
+- Go back to Live App, reload, and:
+  - Cart should now be visible and you should be able to add products to cart from product 
+  detail pages!
+  ![Stitch Application](images/exercise2b.png "MongoMart — Cart")

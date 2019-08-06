@@ -22,35 +22,16 @@ export default class LatestReviews extends Component {
 
   fetchReviews() {
     // Get database handle
-    const db = this.props.client.getServiceClient(
-        RemoteMongoClient.factory, 
-        stitchClusterNames.reviews)
-    .db(dbName);
+    
 
     // Query databasee
-    this.props.clientAuthenticated.then(() => db
-        .collection(collNames.reviews)
-        .find({ productId: this.props.itemId })
-        .asArray())
+    
 
     // Process response
-    .then(response => {
-      if (response) {
-        this.setState({
-          reviews: response,
-          reviewsError: null
-        });
-        this.props.onFetchReviews(response);
-      }
-    })
+    
 
     // Error handling
-    .catch(err => {
-      this.setState({
-        reviewsError: err
-      });
-      console.error(err);
-    });
+    
   }
 
   handleAddReview(review) {
@@ -61,13 +42,17 @@ export default class LatestReviews extends Component {
   }
 
   render() {
-    if (this.state.reviews.length > 0 && !this.state.reviewsError) {
+    if (!this.state.reviewsError) {
       return (
         <div className="row reviews">
-          <div className="col-lg-12">
-            <h3 className="page-header">Recent Reviews</h3>
-          </div>
-          <ListReviews {...this.props} reviews={this.state.reviews} />
+          { this.state.reviews.length > 0 &&
+          <React.Fragment>
+            <div className="col-lg-12">
+              <h3 className="page-header">Recent Reviews</h3>
+            </div>
+            <ListReviews {...this.props} reviews={this.state.reviews} />
+          </React.Fragment>
+          }
           <AddReview
               {...this.props}
               productId={this.props.itemId}

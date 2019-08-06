@@ -105,7 +105,6 @@ In [Atlas](https://cloud.mongodb.com):
 ## Exercise 3 - Displaying Reviews
 
 We’re going to display recent reviews for the product detail page.
-- Uncomment line 20 in *src/Reviews/Reviews.js*
 - Edit in same file:
   - Add following code to fetchReviews() on line 25:
     - Get database handle:
